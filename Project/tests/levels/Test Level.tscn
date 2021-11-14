@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/character/Character.tscn" type="PackedScene" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+
+var crosshair = load(\"res://assets/common/system/mouse/crosshair.png\")
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+	Input.set_custom_mouse_cursor(crosshair)
+"
+
+[node name="Test Level" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="Character" parent="." instance=ExtResource( 1 )]
+position = Vector2( 74, 38 )
