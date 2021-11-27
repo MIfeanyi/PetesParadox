@@ -41,8 +41,9 @@ func shoot():
 	if b == null:
 		print("bullet instance error")
 		return
-	b.look_at(get_global_mouse_position())
+
 	b.global_position = $AnimatedSprite/Weapons/Pistol.global_position
+	b.look_at(get_global_mouse_position())
 	b.apply_impulse(Vector2(),Vector2(500,50).rotated(pistol.global_rotation))
 	owner.add_child(b)
 
@@ -82,7 +83,7 @@ func _handle_input(delta):
 func _handle_collision(delta):
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
-		#print("Collided with: ", collision.collider.name)
+		print("Collided with: ", collision.collider.name)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
