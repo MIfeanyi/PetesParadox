@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export var SPEED = 500
+export var SPEED = 2000
 export var AI_LEVEL = 1
 
 var trackingPlayer = false
@@ -11,16 +11,18 @@ func _ready():
 func _handle_collision(delta):
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
+		print(collision)
 		if collision.collider.is_in_group("bullet"):
+			#collision.collider.queue_free()
 			queue_free()
 	pass
 	
 func _handle_input(d):
 	var move = Vector2.ZERO
 	if trackingPlayer == true:
-		move = position.direction_to(playerRef.position) * SPEED
+		move = position.direction_to(playerRef.position) * SPEED * d
 	move = move.normalized()
-	move = move_and_slide(move)
+	move = move_and_collide(move)
 	pass
 
 func _process(delta):
