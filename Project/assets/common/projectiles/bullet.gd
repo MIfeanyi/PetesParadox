@@ -19,9 +19,7 @@ func shoot(flip,north):
 	pass
 	
 func _handle_collision(delta):
-	for i in get_colliding_bodies():
-		print(i)
-		#queue_free()
+	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	_handle_collision(delta)
