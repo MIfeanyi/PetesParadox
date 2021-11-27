@@ -5,6 +5,7 @@ var flipped = false
 var moving_north = false
 var slope_y
 var slope_x
+var bullet_owner
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimatedSprite.playing=true
@@ -39,6 +40,9 @@ func _on_bullet_body_entered(body):
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("enemy"):
-		body.queue_free()
-		queue_free()
+		if bullet_owner == "player":
+			body.queue_free()
+	elif body.is_in_group("player"):
+		if bullet_owner == "enemy":
+			body.queue_free()
 	pass # Replace with function body.

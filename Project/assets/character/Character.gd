@@ -41,7 +41,7 @@ func shoot():
 	if b == null:
 		print("bullet instance error")
 		return
-
+	b.bullet_owner ="player"
 	b.global_position = $AnimatedSprite/Weapons/Pistol.global_position
 	b.look_at(get_global_mouse_position())
 	b.apply_impulse(Vector2(),Vector2(500,50).rotated(pistol.global_rotation))
