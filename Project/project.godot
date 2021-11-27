@@ -765,6 +765,7 @@ _global_script_class_icons={
 [application]
 
 config/name="PetesParadox"
+run/main_scene="res://tests/levels/Test Level.tscn"
 config/icon="res://icon.png"
 
 [input]
