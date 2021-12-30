@@ -9,6 +9,7 @@ export (PackedScene) var bullet
 
 #Timers
 var DASH_COOLDOWN_TIME = 5
+var SHOOT_TIMER_COOLDOWN = 0.3
 
 #Controls / abilities
 export (bool) var CAN_DASH = true
@@ -19,6 +20,9 @@ var moving_north = false
 var velocity = 1.0
 onready var  pistol = $AnimatedSprite/Weapons/Pistol
 # Called when the node enters the scene tree for the first time.
+
+var can_shoot = true
+
 func _ready():
 	if bullet == null:
 		print("failed to instance bullet")
@@ -46,6 +50,8 @@ func shoot():
 	b.look_at(get_global_mouse_position())
 	b.apply_impulse(Vector2(),Vector2(500,50).rotated(pistol.global_rotation))
 	owner.add_child(b)
+	can_shoot = false
+	$Timers/ShootTimer.start(SHOOT_TIMER_COOLDOWN)
 
 func _handle_input(delta):
 	$AnimatedSprite/Weapons.look_at(get_global_mouse_position())
@@ -63,7 +69,7 @@ func _handle_input(delta):
 	elif mouse_pos.y < global_position.y - DEADZONE_Y:
 		pos.y -= SPEED * velocity * delta
 		moving_north = true
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_pressed("shoot") and can_shoot==true:
 		shoot()
 	
 	#KEYS
@@ -93,4 +99,9 @@ func _process(delta):
 
 func _on_DashTimer_timeout():
 	CAN_DASH = true
+	pass # Replace with function body.
+
+
+func _on_ShootTimer_timeout():
+	can_shoot = true
 	pass # Replace with function body.
