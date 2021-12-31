@@ -22,7 +22,11 @@ script = SubResource( 1 )
 [node name="Test Floor" parent="." instance=ExtResource( 3 )]
 
 [node name="Character" parent="." instance=ExtResource( 1 )]
-position = Vector2( 322, 77 )
+position = Vector2( 499, 266 )
+
+[node name="Camera2D" type="Camera2D" parent="Character"]
+current = true
+smoothing_enabled = true
 
 [node name="Enemy" parent="." instance=ExtResource( 2 )]
-position = Vector2( 400, 216 )
+position = Vector2( 510, 457 )
