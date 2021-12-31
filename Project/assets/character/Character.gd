@@ -56,7 +56,8 @@ func shoot():
 func _handle_input(delta):
 	$AnimatedSprite/Weapons.look_at(get_global_mouse_position())
 	var pos = Vector2()
-	mouse_pos = get_viewport().get_mouse_position()
+	#mouse_pos = get_viewport().get_mouse_position()
+	mouse_pos = get_global_mouse_position()
 	if mouse_pos.x > global_position.x + DEADZONE_X:
 		pos.x += SPEED * velocity * delta
 		flip_h(false)
