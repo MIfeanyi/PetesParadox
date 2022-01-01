@@ -804,6 +804,10 @@ config/name="PetesParadox"
 run/main_scene="res://tests/levels/Test Level.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Gobal="*res://assets/common/system/GOBAL.gd"
+
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg" )
