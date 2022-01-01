@@ -24,6 +24,7 @@ onready var  pistol = $AnimatedSprite/Weapons/Pistol
 var can_shoot = true
 
 func _ready():
+	Gobal.set_crosshair()
 	if bullet == null:
 		print("failed to instance bullet")
 	pass # Replace with function body.
