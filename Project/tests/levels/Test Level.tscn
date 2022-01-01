@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/character/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/enemy/Enemy.tscn" type="PackedScene" id=2]
@@ -7,14 +7,27 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
 
-
+var nextLevel = preload(\"res://tests/levels/Prison Level.tscn\")
 var crosshair = load(\"res://assets/common/system/mouse/crosshair.png\")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 	Input.set_custom_mouse_cursor(crosshair)
+
+
+func _on_NextLevelArea2D_area_entered(area):
+	pass # Replace with function body.
+
+
+func _on_NextLevelArea2D_body_entered(body):
+	print(\"detected activity from: \",body)
+	if body.is_in_group(\"player\") or body.get_parent().is_in_group(\"player\"):
+		get_tree().change_scene_to(nextLevel)
+	pass # Replace with function body.
 "
+
+[sub_resource type="RectangleShape2D" id=2]
 
 [node name="Test Level" type="Node2D"]
 script = SubResource( 1 )
@@ -29,4 +42,19 @@ current = true
 smoothing_enabled = true
 
 [node name="Enemy" parent="." instance=ExtResource( 2 )]
-position = Vector2( 510, 457 )
+position = Vector2( 509, 371 )
+
+[node name="Portals" type="Node" parent="."]
+
+[node name="NextLevelArea2D" type="Area2D" parent="Portals"]
+position = Vector2( 523, 433 )
+scale = Vector2( 18.3538, 3.70288 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portals/NextLevelArea2D"]
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="Portals/NextLevelArea2D" to="." method="_on_NextLevelArea2D_area_entered"]
+[connection signal="body_entered" from="Portals/NextLevelArea2D" to="." method="_on_NextLevelArea2D_body_entered"]
