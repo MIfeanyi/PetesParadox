@@ -42,7 +42,11 @@ func _on_Area2D_body_entered(body):
 	if body.is_in_group("enemy"):
 		if bullet_owner == "player":
 			body.queue_free()
+			queue_free()
 	elif body.is_in_group("player"):
 		if bullet_owner == "enemy":
-			body.queue_free()
+			Gobal.update_life(-1)
+			queue_free()
+			if Gobal.life <= 0:
+				body.queue_free()
 	pass # Replace with function body.
