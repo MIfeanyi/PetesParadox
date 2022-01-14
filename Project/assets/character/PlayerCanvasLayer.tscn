@@ -17,7 +17,7 @@ __meta__ = {
 margin_right = 29.0
 margin_bottom = 600.0
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+[node name="TextureRect1" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 margin_right = 29.0
 margin_bottom = 32.0
 texture = ExtResource( 1 )

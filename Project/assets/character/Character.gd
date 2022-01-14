@@ -93,10 +93,14 @@ func _handle_collision(delta):
 		var collision = get_slide_collision(i)
 		print("Collided with: ", collision.collider.name)
 
+func _handle_updates(delta):
+	if Gobal.life <= 0:
+		queue_free()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	_handle_input(delta)
 	_handle_collision(delta)
+	_handle_updates(delta)
 
 
 func _on_DashTimer_timeout():

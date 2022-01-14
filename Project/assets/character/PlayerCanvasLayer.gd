@@ -13,10 +13,11 @@ func _ready():
 
 func update_gui():
 	for i in $MarginContainer/VBoxContainer.get_children():
+		print(i.name)
 		if(int(i.name))<=Gobal.life:
-			i.Visible=true
+			i.visible=true
 		else:
-			i.Visible=false
+			i.visible=false
 			pass
 	pass
 
