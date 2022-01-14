@@ -41,7 +41,9 @@ position = Vector2( 499, 266 )
 current = true
 smoothing_enabled = true
 
-[node name="Enemy" parent="." instance=ExtResource( 2 )]
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource( 2 )]
 position = Vector2( 509, 371 )
 
 [node name="Portals" type="Node" parent="."]
