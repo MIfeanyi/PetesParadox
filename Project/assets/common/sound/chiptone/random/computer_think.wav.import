@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/computer_think.wav-2f155ad6104530202948517ea7d8fb92.sample"
+
+[deps]
+
+source_file="res://assets/common/sound/chiptone/random/computer_think.wav"
+dest_files=[ "res://.import/computer_think.wav-2f155ad6104530202948517ea7d8fb92.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
