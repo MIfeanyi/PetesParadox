@@ -49,8 +49,8 @@ position = Vector2( 509, 371 )
 [node name="Portals" type="Node" parent="."]
 
 [node name="NextLevelArea2D" type="Area2D" parent="Portals"]
-position = Vector2( 523, 433 )
-scale = Vector2( 18.3538, 3.70288 )
+position = Vector2( 511, 484 )
+scale = Vector2( 3.05266, 2.42456 )
 __meta__ = {
 "_edit_group_": true
 }
