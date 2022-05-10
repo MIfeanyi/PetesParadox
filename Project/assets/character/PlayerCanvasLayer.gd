@@ -1,18 +1,15 @@
 extends CanvasLayer
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Gobal.connect("life_changed",self,"update_gui")
+	connect("use_grenade",self,"use_grenade")
 	pass # Replace with function body.
 
 func update_gui():
-	for i in $MarginContainer/VBoxContainer.get_children():
+	for i in $MarginContainer/UI/Lifes.get_children():
 		print(i.name)
 		if(int(i.name))<=Gobal.life:
 			i.visible=true
@@ -21,6 +18,10 @@ func update_gui():
 			pass
 	pass
 
+func use_grenade(v):
+	print("grenade used")
+	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+

@@ -1,12 +1,15 @@
 extends KinematicBody2D
 
+signal use_grenade(new_value)
+signal update_health(new_value)
+
 export var SPEED = 2000
 export var SPEED_MULTIPLIER = 10.0
 export var DEADZONE_X = 128
 export var DEADZONE_Y = 128
 export var WEAPON_OFFSET_X = 32
 export (PackedScene) var bullet
-
+export (PackedScene) var grenade
 #Timers
 var DASH_COOLDOWN_TIME = 5
 var SHOOT_TIMER_COOLDOWN = 0.3
@@ -22,7 +25,7 @@ onready var  pistol = $AnimatedSprite/Weapons/Pistol
 # Called when the node enters the scene tree for the first time.
 
 var can_shoot = true
-
+var grenades = 2
 func _ready():
 	Gobal.set_crosshair()
 	if bullet == null:
@@ -54,6 +57,21 @@ func shoot():
 	can_shoot = false
 	$Timers/ShootTimer.start(SHOOT_TIMER_COOLDOWN)
 
+func throw():
+	if grenades > 0:
+		emit_signal("use_grenade")
+		var g = grenade.instance()
+		if g == null:
+			return
+		g.grenade_owner = "player"
+		g.global_position = global_position
+		g.set_lerp_to(get_global_mouse_position())
+		owner.add_child(g)
+		grenades-=1
+		
+	
+	
+	pass
 func _handle_input(delta):
 	$AnimatedSprite/Weapons.look_at(get_global_mouse_position())
 	var pos = Vector2()
@@ -73,6 +91,8 @@ func _handle_input(delta):
 		moving_north = true
 	if Input.is_action_pressed("shoot") and can_shoot==true:
 		shoot()
+	if Input.is_action_just_pressed("grenade"):
+		throw()
 	
 	#KEYS
 	if CAN_DASH==true:
