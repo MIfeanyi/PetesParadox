@@ -6,12 +6,15 @@ extends KinematicBody2D
 # var b = "text"
 var lerp_to
 var grenade_owner
-export (PackedScene) var particles
+export (PackedScene) var particles 
 export var lerp_weight = .6
+onready var gen_particles = $GrenadeParticles2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
+func set_particles(p):
+	particles = p
 
 func _process(delta):
 	var p = Vector2(0,0)
@@ -23,7 +26,10 @@ func set_lerp_to(p):
 	print("Grenade pos: ",global_position," will Lerp to:",lerp_to)
 
 func _on_Timer_timeout():
-	#generate_explosion
-	#dmg zone
+	var e = particles.instance()
+	e.global_position = global_position
+	get_parent().add_child(e)
+	for i in $Area2D.get_overlapping_bodies():
+		i.queue_free()
 	queue_free()
 	pass # Replace with function body.

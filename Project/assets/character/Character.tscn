@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/character/weapons/blaster.png" type="Texture" id=1]
 [ext_resource path="res://assets/character/Character.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/character/froggo_walk.png" type="Texture" id=4]
 [ext_resource path="res://assets/character/PlayerCanvasLayer.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/common/projectiles/grenade.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/common/projectiles/GrenadeParticles2D.tscn" type="PackedScene" id=7]
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
@@ -34,13 +35,14 @@ animations = [ {
 
 [node name="Character" type="KinematicBody2D" groups=["player"]]
 script = ExtResource( 2 )
+SPEED = 4000
 bullet = ExtResource( 3 )
 grenade = ExtResource( 6 )
+particles = ExtResource( 7 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
 animation = "Walking"
-frame = 1
 playing = true
 
 [node name="Weapons" type="Node2D" parent="AnimatedSprite"]
