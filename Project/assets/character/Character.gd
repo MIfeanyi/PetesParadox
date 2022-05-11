@@ -10,6 +10,7 @@ export var DEADZONE_Y = 128
 export var WEAPON_OFFSET_X = 32
 export (PackedScene) var bullet
 export (PackedScene) var grenade
+export (PackedScene) var particles
 #Timers
 var DASH_COOLDOWN_TIME = 5
 var SHOOT_TIMER_COOLDOWN = 0.3
@@ -64,6 +65,7 @@ func throw():
 		if g == null:
 			return
 		g.grenade_owner = "player"
+		g.set_particles(particles)
 		g.global_position = global_position
 		g.set_lerp_to(get_global_mouse_position())
 		owner.add_child(g)
