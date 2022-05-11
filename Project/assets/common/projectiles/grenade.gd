@@ -30,6 +30,7 @@ func _on_Timer_timeout():
 	e.global_position = global_position
 	get_parent().add_child(e)
 	for i in $Area2D.get_overlapping_bodies():
-		i.queue_free()
+		if i.is_in_group("enemy"):
+			i.queue_free()
 	queue_free()
 	pass # Replace with function body.
