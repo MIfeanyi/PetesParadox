@@ -43,6 +43,7 @@ particles = ExtResource( 7 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
 animation = "Walking"
+frame = 2
 playing = true
 
 [node name="Weapons" type="Node2D" parent="AnimatedSprite"]
@@ -62,8 +63,12 @@ one_shot = true
 
 [node name="ShootTimer" type="Timer" parent="Timers"]
 
+[node name="InvincibilityTimer" type="Timer" parent="Timers"]
+wait_time = 2.0
+
 [node name="PlayerCanvasLayer" parent="." instance=ExtResource( 5 )]
 
 [connection signal="use_grenade" from="." to="PlayerCanvasLayer" method="use_grenade" binds= [ 0 ]]
 [connection signal="timeout" from="Timers/DashTimer" to="." method="_on_DashTimer_timeout"]
 [connection signal="timeout" from="Timers/ShootTimer" to="." method="_on_ShootTimer_timeout"]
+[connection signal="timeout" from="Timers/InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]

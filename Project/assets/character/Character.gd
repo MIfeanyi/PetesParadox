@@ -17,6 +17,7 @@ var SHOOT_TIMER_COOLDOWN = 0.3
 
 #Controls / abilities
 export (bool) var CAN_DASH = true
+var invincible = false
 var speed_lerp = .25
 var mouse_pos = Vector2() 
 var flipped = false
@@ -113,7 +114,7 @@ func _handle_input(delta):
 func _handle_collision(delta):
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
-		print("Collided with: ", collision.collider.name)
+		#print("Collided with: ", collision.collider.name)
 
 func _handle_updates(delta):
 	if Gobal.life <= 0:
@@ -132,4 +133,17 @@ func _on_DashTimer_timeout():
 
 func _on_ShootTimer_timeout():
 	can_shoot = true
+	pass # Replace with function body.
+
+
+func _on_LaserPod_player_hit():
+	if invincible == false:
+		Gobal.update_life(-1)
+		invincible = true
+		$Timers/InvincibilityTimer.start(2)
+	pass # Replace with function body.
+
+
+func _on_InvincibilityTimer_timeout():
+	invincible = false
 	pass # Replace with function body.
