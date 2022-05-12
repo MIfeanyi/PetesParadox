@@ -3,7 +3,7 @@ extends KinematicBody2D
 signal use_grenade(new_value)
 signal update_health(new_value)
 
-export var SPEED = 2000
+export var SPEED = 8000
 export var SPEED_MULTIPLIER = 10.0
 export var DEADZONE_X = 128
 export var DEADZONE_Y = 128

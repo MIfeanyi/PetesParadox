@@ -35,7 +35,6 @@ animations = [ {
 
 [node name="Character" type="KinematicBody2D" groups=["player"]]
 script = ExtResource( 2 )
-SPEED = 4000
 bullet = ExtResource( 3 )
 grenade = ExtResource( 6 )
 particles = ExtResource( 7 )
