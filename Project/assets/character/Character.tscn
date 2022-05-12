@@ -43,7 +43,7 @@ particles = ExtResource( 7 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
 animation = "Walking"
-frame = 2
+frame = 1
 playing = true
 
 [node name="Weapons" type="Node2D" parent="AnimatedSprite"]
