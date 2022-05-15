@@ -23,7 +23,8 @@ func _process(delta):
 func _handle_input(d):
 	var move = Vector2.ZERO
 	if trackingPlayer == true and is_instance_valid(playerRef):
-		$LaserPoint.global_position= lerp($LaserPoint.global_position,playerRef.position,SPEED*d)
+		$LaserPoint.global_position= global_position.direction_to(playerRef.global_position) * SPEED * d
+		
 	move = move.normalized()
 	move = move_and_slide(move)
 	pass
