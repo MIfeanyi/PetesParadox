@@ -4,19 +4,24 @@ signal player_hit
 
 
 export var SPEED = 2000
+export var SHOOTING_TIME = 2
 export var AI_LEVEL = 1
 export (PackedScene) var laser
 
+var laserTracker 
 var trackingPlayer = false
+var shooting = false
 var playerRef
 
 func _ready():
+	laserTracker = global_position
 	pass # Replace with function body.
 
 
 
 func _process(delta):
 	_handle_input(delta)
+	shoot(delta)
 	_handle_collision(delta)
 	pass
 
@@ -38,13 +43,14 @@ func _handle_collision(delta):
 	pass
 
 
-func shoot():
-	print("Shot ", get_groups(), " laser.")
-	if trackingPlayer == true and is_instance_valid(playerRef):
+func shoot(delta):
+	#print("Shot ", get_groups(), " laser.")
+	if trackingPlayer == true and is_instance_valid(playerRef) and shooting == true:
 		var l = laser.instance()
 		l.laser_owner ="enemy"
 		l.add_point(global_position)
-		l.add_point(playerRef.global_position)
+		laserTracker =lerp(laserTracker,playerRef.global_position,1*delta)
+		l.add_point(laserTracker)
 		#l.look_at(playerRef.global_position)
 		#b.apply_impulse(Vector2(),Vector2(500,50).rotated(b.global_rotation))
 		owner.add_child(l)
@@ -63,7 +69,8 @@ func _on_player_entered(body):
 
 
 func _on_AITimer_timeout():
-	shoot()
+	shooting = true
+	$Timers/ShootTimer.start(SHOOTING_TIME*AI_LEVEL)
 	pass # Replace with function body.
 
 
@@ -71,4 +78,9 @@ func _on_player_exited(body):
 	if body.is_in_group("player") == true:
 		trackingPlayer = false
 		playerRef = null
+	pass # Replace with function body.
+
+
+func _on_ShootTimer_timeout():
+	shooting = false
 	pass # Replace with function body.
